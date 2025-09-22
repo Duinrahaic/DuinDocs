@@ -3,15 +3,20 @@ import { RootProvider } from 'fumadocs-ui/provider';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({
-  subsets: ['latin'],
+    subsets: ['latin'],
 });
 
 export default function Layout({ children }: LayoutProps<'/'>) {
-  return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
-        <RootProvider>{children}</RootProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" className="dark" suppressHydrationWarning>
+        <body className={`flex flex-col bg-gradient-to-br from-gray-950 via-gray-900 to-black min-h-screen text-white overflow-y-auto ${inter.className}`}>
+
+
+        {/* Ensure children sit above */}
+        <div className="relative z-10">
+            <RootProvider>{children}</RootProvider>
+        </div>
+        </body>
+        </html>
+    );
 }
