@@ -33,7 +33,7 @@ export default function HomePage() {
                     {/* Frameless main CTA */}
                     <Link
                         href="/projects"
-                        className="text-white-800 hover:text-gray-300 text-lg font-semibold mb-12"
+                        className="text-white-800 hover:text-gray-300 text-lg font-semibold mb-12 ps-12"
                     >
                         → Check out projects
                     </Link>
@@ -44,11 +44,11 @@ export default function HomePage() {
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md mb-10">
                         <Link
-                            href="https://discord.gg/yourdiscord"
+                            href="https://discord.gg/aZQfy6H9fA"
                             target="_blank"
                             className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                         >
-                            <MessageCircle className="w-5 h-5 text-indigo-400" />
+                            <img className="w-8 h-8" src="/brands/discord-256.png"></img>
                             <div className="flex flex-col">
                                 <span className="text-sm font-medium text-white">Discord</span>
                                 <span className="text-xs text-gray-400">@Duinrahaic</span>
@@ -60,7 +60,8 @@ export default function HomePage() {
                             target="_blank"
                             className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                         >
-                            <Bird className="w-5 h-5 text-sky-400" />
+
+                            <img className="w-8 h-8" src="/brands/bluesky-256.png"></img>
                             <div className="flex flex-col">
                                 <span className="text-sm font-medium text-white">Bluesky</span>
                                 <span className="text-xs text-gray-400">@duinrahaic.app</span>
@@ -72,7 +73,7 @@ export default function HomePage() {
                             target="_blank"
                             className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                         >
-                            <Users className="w-5 h-5 text-gray-300" />
+                            <img className="w-8 h-8" src="/brands/twitter-x-256.png"></img>
                             <div className="flex flex-col">
                                 <span className="text-sm font-medium text-white">Twitter / X</span>
                                 <span className="text-xs text-gray-400">@duinrahaic</span>
@@ -84,10 +85,10 @@ export default function HomePage() {
                             target="_blank"
                             className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                         >
-                            <Users className="w-5 h-5 text-green-400" />
+                            <img className="w-8 h-8" src="/brands/vrc-256.png"></img>
                             <div className="flex flex-col">
                                 <span className="text-sm font-medium text-white">VRChat</span>
-                                <span className="text-xs text-gray-400">@Duinrahaic</span>
+                                <span className="text-xs text-gray-400">@Duin</span>
                             </div>
                         </Link>
                     </div>
@@ -98,20 +99,26 @@ export default function HomePage() {
                     </h2>
                     <div className="flex flex-wrap gap-4">
                         <Link
-                            href="https://yourbooth.link"
+                            href="https://duinrahaic.booth.pm/"
                             target="_blank"
-                            className="flex items-center gap-2 px-4 py-2 rounded-md bg-pink-600 hover:bg-pink-500 text-white transition"
+                            className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                         >
-                            <ShoppingBag className="w-5 h-5" />
-                            Booth
+                            <img className="w-8 h-8" src="/brands/booth-256.png"></img>
+                            <div className="flex flex-col">
+                                <span className="text-sm font-medium text-white">Booth</span>
+                                <span className="text-xs text-gray-400">@Duinrahaic</span>
+                            </div>
                         </Link>
                         <Link
                             href="https://ko-fi.com/duinrahaic"
                             target="_blank"
-                            className="flex items-center gap-2 px-4 py-2 rounded-md bg-orange-500 hover:bg-orange-400 text-white transition"
+                            className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                         >
-                            <Heart className="w-5 h-5" />
-                            Ko-fi
+                            <img className="w-8 h-8" src="/brands/ko-fi-icon.png"></img>
+                            <div className="flex flex-col">
+                                <span className="text-sm font-medium text-white">Ko-Fi</span>
+                                <span className="text-xs text-gray-400">@Duinrahaic</span>
+                            </div>
                         </Link>
                     </div>
                 </div>
