@@ -26,12 +26,6 @@ export function baseOptions(): BaseLayoutProps {
         text: "Projects",
         url: "/projects",
         secondary: false,
-      },
-      {
-        icon: <HeartHandshake className="w-4 h-4" />,
-        text: "Support",
-        url: "/support",
-        secondary: false,
       }
     ],
   };

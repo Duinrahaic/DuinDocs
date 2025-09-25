@@ -1,7 +1,10 @@
+
 import Link from "next/link";
 import { MessageCircle, Bird, Users, Heart, ShoppingBag } from "lucide-react";
+import SupportersPills from "./SupportersPills";
 
 export default function HomePage() {
+
     return (
         <main className="relative px-6 py-20 flex items-center">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -22,8 +25,8 @@ export default function HomePage() {
 
                 {/* Right Column - Text + CTA */}
                 <div className="flex flex-col items-start text-left">
-                    <h1 className="text-5xl font-bold text-white mb-6">Duinrahaic</h1>
-
+                    <h1 className="text-5xl font-bold text-white mb-2">Duinrahaic</h1>
+                    <i className="mb-4">But you can call me `Duin`.</i>
                     <p className="text-lg text-gray-300 mb-10 max-w-lg">
                         A self-taught developer passionate about building tools for VR,
                         streaming, and creative communities. I focus on .NET, Blazor, and
@@ -122,6 +125,8 @@ export default function HomePage() {
                         </Link>
                     </div>
                 </div>
+                <SupportersPills />
+
             </div>
         </main>
     );

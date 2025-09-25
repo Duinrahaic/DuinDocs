@@ -10,34 +10,9 @@ import {
 } from "lucide-react";
 
 import { ReactNode } from "react";
+import {Project} from "@/app/types";
 
-export interface Project {
-    slug: string;
-    title: string;
-    subtitle: string;
-    tagline: string;
-    collaborative: boolean;
-    icon: ReactNode | string;
-    backgroundImage?: string;
-    backgroundColor?: string;
 
-    // Links
-    githubUrl?: string;
-    docsUrl?: string;
-    downloadUrl?: string;
-    boothUrl?: string;
-    externalUrl?: {href:string, label:string, icon?:ReactNode};
-
-    // Showcase
-    media: ReactNode;
-
-    // Features
-    features: {
-        title: string;
-        description: string;
-        icon?: ReactNode;
-    }[];
-}
 
 
 export const projects: Project[] = [
@@ -49,7 +24,7 @@ export const projects: Project[] = [
         collaborative: false,
         icon: <Video className="w-8 h-8 text-purple-300" />,
         backgroundColor: "bg-purple-800",
-
+        coverImage: "/projects/DollyManager.png",
         // links
         githubUrl: "https://github.com/Duinrahaic/VRCDollyManager",
         docsUrl: "https://github.com/Duinrahaic/VRCDollyManager#readme",
@@ -61,7 +36,7 @@ export const projects: Project[] = [
         media: (
             <img
                 alt="Dolly Manager in action"
-                src="https://github.com/Duinrahaic/VRCDollyManager/blob/main/assets/DM-Example.gif?raw=true"
+                src="/projects/DollyManager_Demo.gif"
                 className="rounded-lg shadow-md w-full"
             />
         ),
@@ -131,59 +106,5 @@ export const projects: Project[] = [
             },
         ],
     },
-    {
-        slug: "rhythmrouter",
-        title: "RhythmRouter",
-        subtitle: "MediaMTX-powered stream router",
-        tagline: "Route and manage live VRChat streams with FFmpeg + YARP",
-        collaborative: true,
-        icon: <Server className="w-8 h-8 text-sky-300" />,
-        backgroundImage: "/images/rhythmrouter-bg.png",
 
-        githubUrl: "https://github.com/Duinrahaic/RhythmRouter",
-
-        media: (
-            <div className="bg-black text-white p-8 rounded-lg">
-                RhythmRouter showcase coming soon…
-            </div>
-        ),
-
-        features: [
-            {
-                title: "MediaMTX Core",
-                description: "Handles RTMP/RTSP ingress and egress routing.",
-            },
-            {
-                title: "FFmpeg Integration",
-                description: "Supports on-the-fly video/audio processing and muxing.",
-            },
-        ],
-    },
-    {
-        slug: "jurassicbingo",
-        title: "JurassicBingo",
-        subtitle: "Jurassic Park themed bingo night",
-        tagline: "Generate themed bingo cards with images and quotes",
-        collaborative: true,
-        icon: "🦖",
-        backgroundColor: "bg-green-800",
-
-        media: (
-            <div className="bg-black text-white p-8 rounded-lg">
-                Jurassic Bingo showcase coming soon…
-            </div>
-        ),
-
-        features: [
-            {
-                title: "Custom Cards",
-                description:
-                    "Generates bingo cards with Jurassic Park characters, quotes, and scenes.",
-            },
-            {
-                title: "Web Export",
-                description: "Playable in-browser with printable export support.",
-            },
-        ],
-    },
 ];

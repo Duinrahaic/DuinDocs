@@ -2,127 +2,92 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import clsx from "clsx";
-import { Star, Download } from "lucide-react";
 import { useEffect, useState } from "react";
-
-type ProjectCardProps = {
-    title: string;
-    subtitle: string;
-    href: string;
-    icon: React.ReactNode | string;
-    backgroundImage?: string;
-    backgroundColor?: string;
-    githubUrl?: string; // from projects.ts
-};
+import { Star, Download } from "lucide-react";
+import clsx from "clsx";
+import { ProjectCardProps } from "@/app/types";
+import { Api } from "@/app/lib/apiClient";
 
 export function ProjectCard({
                                 title,
                                 subtitle,
                                 href,
-                                icon,
                                 backgroundImage,
-                                backgroundColor = "bg-gray-800",
                                 githubUrl,
                             }: ProjectCardProps) {
     const [stars, setStars] = useState<number | null>(null);
     const [downloads, setDownloads] = useState<number | null>(null);
 
-    // Build API path from GitHub URL
-    const getApiUrl = (url: string) => {
-        const match = url.match(/github\.com\/([^/]+)\/([^/]+)/);
-        if (!match) return null;
-        const [, owner, repo] = match;
-        return `/api/github/${owner}/${repo}`;
-    };
-
     useEffect(() => {
         if (!githubUrl) return;
-        const apiUrl = getApiUrl(githubUrl);
-        if (!apiUrl) return;
+        const match = githubUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
+        if (!match) return;
 
-        async function fetchStats() {
-            try {
-                const res = await fetch(apiUrl as string);
-                if (!res.ok) return;
-                const data = await res.json();
+        const [, owner, repo] = match;
 
-                if (typeof data.stars === "number") setStars(data.stars);
-                if (typeof data.downloads === "number") setDownloads(data.downloads);
-            } catch (err) {
-                console.error("Failed to fetch cached GitHub stats:", err);
-            }
-        }
-
-        fetchStats();
+        Api.getGithubProject(owner, repo)
+            .then((data) => {
+                if (!data) return;
+                setStars(data.Stars ?? null);
+                setDownloads(data.Downloads ?? null);
+            })
+            .catch((err) => console.error("Failed to load GitHub stats:", err));
     }, [githubUrl]);
 
-    const isImagePath =
-        typeof icon === "string" && (icon.startsWith("/") || icon.startsWith("http"));
-
     return (
-        <Link href={href}>
+        <Link href={href} className="block group">
             <div
                 className={clsx(
-                    "relative rounded-xl overflow-hidden flex items-center p-6 min-h-[160px]",
-                    "transition-all duration-300 ease-out",
-                    "hover:scale-[1.03] hover:shadow-xl",
-                    "border border-gray-700",
-                    !backgroundImage && backgroundColor
+                    "relative flex flex-col justify-end rounded-xl overflow-hidden",
+                    "w-full h-80",
+                    "border border-gray-700 shadow-md",
+                    "transition-transform duration-300 ease-out hover:scale-[1.02]"
                 )}
-                style={
-                    backgroundImage
-                        ? {
-                            backgroundImage: `url(${backgroundImage})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                        }
-                        : undefined
-                }
+                style={{ backgroundColor: backgroundImage ? undefined : "#000" }}
             >
-                {backgroundImage && <div className="absolute inset-0 bg-black/50"/>}
+                {backgroundImage && (
+                    <Image
+                        src={backgroundImage}
+                        alt={title}
+                        fill
+                        className="object-cover"
+                    />
+                )}
 
-                {/* Content */}
-                <div className="relative z-10 flex items-center gap-6 w-full">
-                    {/* Icon */}
-                    <div
-                        className="flex-shrink-0 w-20 h-20 flex items-center justify-center bg-black/40 rounded-lg text-4xl">
-                        {isImagePath ? (
-                            <Image
-                                src={icon as string}
-                                alt={`${title} icon`}
-                                width={48}
-                                height={48}
-                                className="object-contain"
-                            />
-                        ) : typeof icon === "string" ? (
-                            icon
-                        ) : (
-                            icon
-                        )}
-                    </div>
-
-                    {/* Text + Stats */}
-                    <div>
-                        <h3 className="text-xl font-bold text-white">{title}</h3>
-                        <p className="text-base text-gray-300">{subtitle}</p>
-
-                        {(stars !== null || downloads !== null) && (
-                            <div className="mt-2 flex items-center gap-4 text-sm text-gray-400">
+                <div
+                    className={clsx(
+                        "absolute bottom-0 left-0 right-0",
+                        "bg-black/40 backdrop-blur-md",
+                        "transition-all duration-300 ease-in-out",
+                        "group-hover:h-28 h-16"
+                    )}
+                >
+                    <div className="px-4 py-2 flex flex-col justify-center h-full">
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-lg font-bold text-white truncate">{title}</h3>
+                            <div className="flex gap-4 text-sm text-gray-200">
                                 {stars !== null && (
                                     <div className="flex items-center gap-1">
-                                        <Star className="w-4 h-4 text-yellow-400"/>
+                                        <Star className="w-4 h-4 text-yellow-400" />
                                         <span>{stars}</span>
                                     </div>
                                 )}
                                 {downloads !== null && (
                                     <div className="flex items-center gap-1">
-                                        <Download className="w-4 h-4 text-blue-400"/>
+                                        <Download className="w-4 h-4 text-blue-400" />
                                         <span>{downloads}</span>
                                     </div>
                                 )}
                             </div>
-                        )}
+                        </div>
+                        <p
+                            className={clsx(
+                                "text-sm text-gray-300 mt-1 overflow-hidden transition-all duration-300",
+                                "max-h-0 group-hover:max-h-16"
+                            )}
+                        >
+                            {subtitle}
+                        </p>
                     </div>
                 </div>
             </div>

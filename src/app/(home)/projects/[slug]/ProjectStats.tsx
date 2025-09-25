@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Star, Download } from "lucide-react";
+import { Api } from "@/app/lib/apiClient";
 
 type Props = {
     githubUrl: string;
@@ -11,31 +12,20 @@ export default function ProjectStats({ githubUrl }: Props) {
     const [stars, setStars] = useState<number | null>(null);
     const [downloads, setDownloads] = useState<number | null>(null);
 
-    const getApiUrl = (url: string): string | null => {
-        const match = url.match(/github\.com\/([^/]+)\/([^/]+)/);
-        if (!match) return null;
-        const [, owner, repo] = match;
-        return `/api/github/${owner}/${repo}`;
-    };
-
     useEffect(() => {
-        const apiUrl = getApiUrl(githubUrl);
-        if (!apiUrl) return;
+        if (!githubUrl) return;
+        const match = githubUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
+        if (!match) return;
 
-        async function fetchStats() {
-            try {
-                const res = await fetch(apiUrl as string);
-                if (!res.ok) return;
-                const data = await res.json();
+        const [, owner, repo] = match;
 
-                if (typeof data.stars === "number") setStars(data.stars);
-                if (typeof data.downloads === "number") setDownloads(data.downloads);
-            } catch (err) {
-                console.error("Failed to fetch stats:", err);
-            }
-        }
-
-        fetchStats();
+        Api.getGithubProject(owner, repo)
+            .then((data) => {
+                if (!data) return;
+                setStars(data.Stars ?? null);
+                setDownloads(data.Downloads ?? null);
+            })
+            .catch((err) => console.error("Failed to load GitHub stats:", err));
     }, [githubUrl]);
 
     return (

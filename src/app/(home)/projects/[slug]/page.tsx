@@ -1,9 +1,13 @@
 import { projects } from "@/data/projects";
+import { Project} from "@/app/types";
 import { notFound } from "next/navigation";
 import ProjectContent from "@/app/(home)/projects/[slug]/ProjectContent";
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-    const project = projects.find((p) => p.slug === params.slug);
+    // eslint-disable-next-line @typescript-eslint/await-thenable
+    const project = projects.find(
+        (p) => p.slug.toLowerCase() === params.slug.toLowerCase()
+    );
 
     if (!project) return notFound();
 

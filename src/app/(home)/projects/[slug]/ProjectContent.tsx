@@ -78,9 +78,9 @@ export default function ProjectContent({
                     <a
                         href={boothUrl}
                         target="_blank"
-                        className="flex items-center gap-2 px-3 py-1 rounded bg-pink-600 hover:bg-pink-500 text-white"
+                        className="flex items-center gap-2 px-3 py-1 rounded bg-[#fc4d50] hover:bg-[#e14447] text-white"
                     >
-                        <Square className="w-4 h-4" />
+                        <img src="/brands/booth-256.png" className="w-4 h-4" />
                         Booth
                     </a>
                 )}
