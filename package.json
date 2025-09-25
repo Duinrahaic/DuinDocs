@@ -6,9 +6,12 @@
     "build": "next build",
     "dev": "next dev --turbo",
     "start": "next start",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "build-cf": "next build && npx opennextjs-cloudflare build",
+    "deploy": "npx opennextjs-cloudflare deploy"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.8.5",
     "components": "^0.1.0",
     "fumadocs-core": "15.7.12",
     "fumadocs-mdx": "11.10.0",
@@ -26,6 +29,7 @@
     "@types/react-dom": "^19.1.9",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "wrangler": "^4.40.0"
   }
 }
