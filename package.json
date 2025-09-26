@@ -6,9 +6,8 @@
     "build": "next build",
     "dev": "next dev --turbo",
     "start": "next start",
-    "postinstall": "fumadocs-mdx",
-    "build-cf": "next build && npx opennextjs-cloudflare build",
-    "deploy": "npx opennextjs-cloudflare deploy"
+    "build-cf": "npx @cloudflare/next-on-pages build",
+    "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.8.5",
