@@ -1,13 +1,18 @@
 import { projects } from "@/data/projects";
-import { Project} from "@/app/types";
 import { notFound } from "next/navigation";
 import ProjectContent from "@/app/(home)/projects/[slug]/ProjectContent";
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-    // eslint-disable-next-line @typescript-eslint/await-thenable
-    const project = projects.find(
-        (p) => p.slug.toLowerCase() === params.slug.toLowerCase()
-    );
+type PageParams = {
+    slug: string;
+};
+
+type PageProps = {
+    params: Promise<PageParams>;
+};
+
+export default async function ProjectPage({ params }: PageProps) {
+    const { slug } = await params;
+    const project = projects.find((p) => p.slug === slug);
 
     if (!project) return notFound();
 
