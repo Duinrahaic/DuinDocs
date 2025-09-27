@@ -19,7 +19,3 @@ binding   = "ASSETS"
 binding = "WORKER_SELF_REFERENCE"
 # The service should match the "name" of your worker
 service = "duindocs"
-
-[[r2_buckets]]
-binding = "NEXT_INC_CACHE_R2_BUCKET"
-bucket_name = "duindocs-inc-cache"
