@@ -12,13 +12,25 @@ export default function SupportersPills() {
         Api.getSubscribers()
             .then((data) => {
                 if (!data) return;
-                setSupporters(data);
+
+                // normalize casing to match frontend `Subscriber` type
+                const normalized = data.map((s: any) => ({
+                    id: s.Id,
+                    name: s.Name,
+                    status: s.Status,
+                }));
+
+                setSupporters(normalized);
+                console.log(
+                    normalized.map((s) => s.id),
+                    new Set(normalized.map((s) => s.id))
+                );
             })
             .catch((err) => console.error("Failed to load supporters:", err));
     }, []);
 
     return (
-        <div className="mt-12 col-span-2">
+        <div className="mt-12 md:col-span-2">
             <h2 className="text-sm uppercase tracking-wide text-gray-400 mb-3">
                 Supporters
             </h2>
@@ -31,8 +43,8 @@ export default function SupportersPills() {
                             key={s.id}
                             className="px-3 py-1 rounded-full text-sm bg-blue-600 text-white shadow-[0_0_12px_3px_rgba(37,99,235,0.75)] transition"
                         >
-              {s.name}
-            </span>
+                            {s.name}
+                        </span>
                     ))}
             </div>
 
@@ -43,7 +55,11 @@ export default function SupportersPills() {
                     target="_blank"
                     className="flex items-center gap-3 px-5 py-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                 >
-                    <img className="w-8 h-8" src="/brands/ko-fi-icon.png" alt="Ko-fi" />
+                    <img
+                        className="w-8 h-8"
+                        src="/brands/ko-fi-icon.png"
+                        alt="Ko-fi"
+                    />
                     <span className="text-white font-medium">Support on Ko-fi</span>
                 </Link>
             </div>

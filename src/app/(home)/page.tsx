@@ -7,7 +7,7 @@ export default function HomePage() {
 
     return (
         <main className="relative px-6 py-20 flex items-center">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2  items-center">
                 {/* Left Column - Hero Image */}
                 <div className="relative flex justify-center">
                     <img
@@ -25,8 +25,12 @@ export default function HomePage() {
 
                 {/* Right Column - Text + CTA */}
                 <div className="flex flex-col items-start text-left">
-                    <h1 className="text-5xl font-bold text-white mb-2">Duinrahaic</h1>
+                    <div className="flex flex-row items-baseline">
+                        <h1 className="text-5xl font-bold text-white mb-2">Duinrahaic  </h1>
+                        <i className="flex-grow-1">(doo-IN-rah-ik)</i>
+                    </div>
                     <i className="mb-4">But you can call me `Duin`.</i>
+
                     <p className="text-lg text-gray-300 mb-10 max-w-lg">
                         A self-taught developer passionate about building tools for VR,
                         streaming, and creative communities. I focus on .NET, Blazor, and
@@ -88,7 +92,7 @@ export default function HomePage() {
                             target="_blank"
                             className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                         >
-                            <img className="w-8 h-8" src="/brands/vrc-256.png"></img>
+                            <img className="w-8 h-8" src="/brands/VRC-256.png"></img>
                             <div className="flex flex-col">
                                 <span className="text-sm font-medium text-white">VRChat</span>
                                 <span className="text-xs text-gray-400">@Duin</span>
