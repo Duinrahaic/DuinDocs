@@ -88,7 +88,7 @@ export default function HomePage() {
                         </Link>
 
                         <Link
-                            href="https://vrchat.com/home/user/duinrahaic"
+                            href="https://vrchat.com/home/user/usr_30b4e812-e6b1-4200-b563-ef74e89ea266"
                             target="_blank"
                             className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
                         >
