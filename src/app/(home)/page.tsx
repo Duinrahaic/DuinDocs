@@ -98,6 +98,17 @@ export default function HomePage() {
                                 <span className="text-xs text-gray-400">@Duin</span>
                             </div>
                         </Link>
+                        <Link
+                            href="https://github.com/duinrahaic"
+                            target="_blank"
+                            className="flex items-center gap-3 p-3 rounded-md bg-gray-800 hover:bg-gray-700 transition"
+                        >
+                            <img className="w-8 h-8" src="/brands/github-256.png"></img>
+                            <div className="flex flex-col">
+                                <span className="text-sm font-medium text-white">Github</span>
+                                <span className="text-xs text-gray-400">@Duinrahaic</span>
+                            </div>
+                        </Link>
                     </div>
 
                     {/* Support Section */}
