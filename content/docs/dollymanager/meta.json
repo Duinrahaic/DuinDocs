@@ -1,0 +1,10 @@
+{
+  "title": "VRC Dolly Manager",
+  "pages": [
+    "about",
+    "gettingstarted",
+    "usage",
+    "osc"
+  ],
+  "root": true
+}
