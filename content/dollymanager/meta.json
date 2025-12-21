@@ -3,6 +3,7 @@
   "pages": [
     "index",
     "installation",
+    "interface",
     "usage",
     "osc",
     "contact-support"

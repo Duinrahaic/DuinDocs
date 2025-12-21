@@ -4,7 +4,7 @@ export function SupportPanel() {
     return (
 
         <div className="flex justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 w-full">
+            <div className="grid grid-cols-1 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 w-full">
                 <Link
                     href="https://discord.gg/aZQfy6H9fA"
                     target="_blank"
