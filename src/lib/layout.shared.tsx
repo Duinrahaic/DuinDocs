@@ -51,7 +51,7 @@ export function baseOptions(): BaseLayoutProps {
               <NavbarMenuLink href="/fitosc">
                 <div className="flex items-center gap-2">
                     <Image
-                        src="/docs/FitOSC/FitOSCLogo.png"
+                        src="/docs/fitosc/FitOSCLogo.png"
                         alt="FitOSC"
                         width={36}
                         height={36}
