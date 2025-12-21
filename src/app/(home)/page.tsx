@@ -34,16 +34,8 @@ export default function HomePage() {
                     <p className="text-lg text-gray-300 mb-10 max-w-lg">
                         A self-taught developer passionate about building tools for VR,
                         streaming, and creative communities. I focus on .NET, Blazor, and
-                        immersive integrations — making complex systems more accessible and fun.
+                        immersive integrations - making complex systems more accessible and fun.
                     </p>
-
-                    {/* Frameless main CTA */}
-                    <Link
-                        href="/projects"
-                        className="text-white-800 hover:text-gray-300 text-lg font-semibold mb-12 ps-12"
-                    >
-                        → Check out projects
-                    </Link>
 
                     {/* Contact / Socials Section */}
                     <h2 className="text-sm uppercase tracking-wide text-gray-400 mb-3">

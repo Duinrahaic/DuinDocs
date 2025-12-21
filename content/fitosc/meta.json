@@ -1,0 +1,10 @@
+{
+  "title": "FitOSC",
+  "pages": [
+    "index",
+    "installation",
+    "usage",
+    "contact-support"
+  ],
+  "root": true
+}

@@ -13,6 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <HomeLayout
           {...baseOptions()}
       >
+
         {children}
 
       </HomeLayout>

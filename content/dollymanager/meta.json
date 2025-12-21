@@ -1,0 +1,11 @@
+{
+  "title": "DollyManager",
+  "pages": [
+    "index",
+    "installation",
+    "usage",
+    "osc",
+    "contact-support"
+  ],
+  "root": true
+}
