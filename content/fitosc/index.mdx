@@ -1,0 +1,59 @@
+---
+title: About FitOSC
+description: Run in VR with your treadmill
+hideTitle: true
+hideDescription: true
+---
+
+import { Cards, Card } from 'fumadocs-ui/components/card'
+import ProjectActions from '@/components/ProjectActions'
+import ProjectHeader from '@/components/ProjectHeader'
+
+<ProjectHeader
+    title="FitOSC"
+    subtitle="Connect your treadmill to VRChat with OSC"
+    githubUrl="https://github.com/Duinrahaic/FitOSC"
+/>
+
+<ProjectActions
+    githubUrl="https://github.com/Duinrahaic/FitOSC"
+    downloadUrl="https://github.com/Duinrahaic/FitOSC/releases"
+/>
+
+<Cards>
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        📡 <strong>Native BLE</strong>
+      </span>
+        }
+        description="Connects directly to treadmills using Bluetooth Low Energy"
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        🎮 <strong>OSC Support</strong>
+      </span>
+        }
+        description="Streams real-time treadmill telemetry into VRChat"
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        🏃 <strong>Real-time Data</strong>
+      </span>
+        }
+        description="Get live speed, distance, and heart rate data in VR"
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        ⚡ <strong>Low Latency</strong>
+      </span>
+        }
+        description="Minimal delay between treadmill and VRChat"
+    />
+</Cards>

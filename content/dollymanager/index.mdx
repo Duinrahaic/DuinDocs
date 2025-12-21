@@ -1,0 +1,95 @@
+---
+title: About DollyManager
+description: A Dolly Manager for VRChat
+hideTitle: true
+hideDescription: true
+---
+
+import { Cards, Card } from 'fumadocs-ui/components/card'
+import ProjectActions from '@/components/ProjectActions'
+import ProjectHeader from '@/components/ProjectHeader'
+
+
+<img
+    src="/docs/dollymanager/DollyManager_Demo.gif"
+    alt="Dolly Manager demo showing 3D preview and dolly management"
+    className="mx-auto my-10 rounded-xl shadow-lg"
+/>
+
+<ProjectHeader
+    title="DollyManager"
+    subtitle="A Dolly Manager for VRChat."
+    githubUrl="https://github.com/Duinrahaic/VRCDollyManager"
+/>
+
+
+<ProjectActions
+    githubUrl="https://github.com/Duinrahaic/VRCDollyManager"
+    downloadUrl="https://github.com/Duinrahaic/VRCDollyManager/releases"
+    boothUrl="https://duinrahaic.booth.pm/items/6189333"
+/>
+
+<Cards>
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        🏷️ <strong>Labeling</strong>
+      </span>
+        }
+        description="Tag & rename your dollies so they are searchable and easily identifiable."
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        📽️ <strong>3D Preview</strong>
+      </span>
+        }
+        description="View your dollies in 3D before you load them into VRChat."
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        👍 <strong>Non-Invasive</strong>
+      </span>
+        }
+        description="Manage your dollies with ease without modifying the original files."
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        🪶 <strong>Lightweight</strong>
+      </span>
+        }
+        description="A lightweight application with no additional dependencies."
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        📶 <strong>OSC Enabled</strong>
+      </span>
+        }
+        description="Uses OSC Query for easy integration. Load dollies with a single click."
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        👀 <strong>Monitoring</strong>
+      </span>
+        }
+        description="Automatically watches and ingests new dollies as they are created."
+    />
+
+    <Card
+        title={
+            <span className="inline-flex items-center gap-2">
+        📦 <strong>Sharing</strong>
+      </span>
+        }
+        description="Share dolly content instantly by copying files to your clipboard."
+    />
+</Cards>

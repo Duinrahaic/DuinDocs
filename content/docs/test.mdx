@@ -1,8 +1,10 @@
+import { BookOpen, Code, Rocket } from 'lucide-react'
+
+
 ---
 title: Components
 description: Components
 ---
-
 ## Code Block
 
 ```js
@@ -12,6 +14,14 @@ console.log('Hello World');
 ## Cards
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
+    <Card
+        title={
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+        <Rocket size={18} />
+        Getting Started
+      </span>
+        }
+        description="Install, configure, and deploy your docs"
+        href="/docs/getting-started"
+    />
 </Cards>
