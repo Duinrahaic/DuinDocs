@@ -1,53 +1,20 @@
-﻿"use client";
-
-import { useEffect, useState } from "react";
-import { Star, Download } from "lucide-react";
+﻿import { Star, Download } from "lucide-react";
 
 type ProjectHeaderProps = {
     title: string;
     subtitle?: string;
     githubUrl?: string;
+    stars?: number | null;
+    downloads?: number | null;
 };
 
 export default function ProjectHeader({
     title,
     subtitle,
     githubUrl,
+    stars = null,
+    downloads = null,
 }: ProjectHeaderProps) {
-    const [stars, setStars] = useState<number | null>(null);
-    const [downloads, setDownloads] = useState<number | null>(null);
-
-    useEffect(() => {
-        if (!githubUrl) return;
-        const match = githubUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
-        if (!match) return;
-
-        const [, owner, repo] = match;
-
-        // Fetch GitHub stats
-        fetch(`https://api.github.com/repos/${owner}/${repo}`)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.stargazers_count !== undefined) {
-                    setStars(data.stargazers_count);
-                }
-            })
-            .catch((err) => console.error("Failed to load GitHub stars:", err));
-
-        // Fetch latest release downloads
-        fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.assets && Array.isArray(data.assets)) {
-                    const totalDownloads = data.assets.reduce(
-                        (sum: number, asset: any) => sum + (asset.download_count || 0),
-                        0
-                    );
-                    setDownloads(totalDownloads);
-                }
-            })
-            .catch((err) => console.error("Failed to load downloads:", err));
-    }, [githubUrl]);
 
     return (
         <div className="gap-1 text-start flex flex-col">

@@ -2,37 +2,14 @@ import { Subscriber, Treadmill } from "@/app/types";
 
 const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "https://api.duinrahaic.app";
 
-interface CacheEntry<T> {
-    data: T;
-    timestamp: number;
-}
-
-const cache = new Map<string, CacheEntry<any>>();
-
-async function apiFetch<T>(
-    path: string,
-    options?: RequestInit & { cache?: { ttl?: number } }
-): Promise<T | null> {
-    const cacheKey = `${path}`;
-    const cacheTTL = options?.cache?.ttl;
-
-    if (cacheTTL) {
-        const cached = cache.get(cacheKey);
-        if (cached && Date.now() - cached.timestamp < cacheTTL) {
-            return cached.data as T;
-        }
-    }
-
+async function apiFetch<T>(path: string): Promise<T | null> {
     try {
-        // Separate custom cache option from fetch options
-        const { cache: _, ...fetchOptions } = options || {};
-
         const res = await fetch(`${API_HOST}${path}`, {
             headers: {
                 "Content-Type": "application/json",
-                ...(fetchOptions?.headers || {}),
             },
-            ...fetchOptions,
+            // Revalidate every 5 minutes
+            next: { revalidate: 300 },
         });
 
         if (!res.ok) {
@@ -41,11 +18,6 @@ async function apiFetch<T>(
         }
 
         const data = (await res.json()) as T;
-
-        if (cacheTTL) {
-            cache.set(cacheKey, { data, timestamp: Date.now() });
-        }
-
         return data;
     } catch (err) {
         console.error("API fetch error:", err);
@@ -53,21 +25,14 @@ async function apiFetch<T>(
     }
 }
 
-export const Api = {
+export const ApiServer = {
     async getGithubProject(owner: string, repo: string) {
         const response = await apiFetch<{
             success: boolean;
             data: { Name: string; Stars: number; Downloads: number; UpdatedAt: string };
             cached: boolean;
-        }>(`/github/${owner}/${repo}`, {
-            cache: { ttl: 5 * 60 * 1000 }, // Cache for 5 minutes
-        });
+        }>(`/github/${owner}/${repo}`);
         return response?.data || null;
-    },
-
-    async getHealth() {
-        const response = await apiFetch<{ status: string; timestamp: string }>("/health");
-        return response || null;
     },
 
     async getSubscribers() {
@@ -85,9 +50,7 @@ export const Api = {
             success: boolean;
             data: Treadmill[];
             count: number;
-        }>("/treadmills.mdx", {
-            cache: { ttl: 10 * 60 * 1000 }, // Cache for 10 minutes
-        });
+        }>("/treadmills.mdx");
         return response?.data || null;
     },
 };

@@ -1,33 +1,19 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Api } from "@/app/lib/apiClient";
 import type { Subscriber } from "@/app/types";
 
-export default function SupportersPills() {
-    const [supporters, setSupporters] = useState<Subscriber[]>([]);
+type SupportersPillsProps = {
+    supporters: Subscriber[];
+};
 
-    useEffect(() => {
-        Api.getSubscribers()
-            .then((data) => {
-                if (!data) return;
+export default function SupportersPills({ supporters }: SupportersPillsProps) {
 
-                // normalize casing to match frontend `Subscriber` type
-                const normalized = data.map((s: any) => ({
-                    id: s.Id,
-                    name: s.Name,
-                    status: s.Status,
-                }));
-
-                setSupporters(normalized);
-                console.log(
-                    normalized.map((s) => s.id),
-                    new Set(normalized.map((s) => s.id))
-                );
-            })
-            .catch((err) => console.error("Failed to load supporters:", err));
-    }, []);
+    const isActive = (supporter: Subscriber) => {
+        if (supporter.Status !== "active") return false;
+        if (!supporter.EndsAt) return true;
+        return new Date(supporter.EndsAt) > new Date();
+    };
 
     return (
         <div className="mt-12 md:col-span-2">
@@ -37,15 +23,29 @@ export default function SupportersPills() {
 
             <div className="flex flex-wrap gap-2">
                 {supporters
-                    .sort((a, b) => a.name.localeCompare(b.name))
-                    .map((s) => (
-                        <span
-                            key={s.id}
-                            className="px-3 py-1 rounded-full text-sm bg-blue-600 text-white shadow-[0_0_12px_3px_rgba(37,99,235,0.75)] transition"
-                        >
-                            {s.name}
-                        </span>
-                    ))}
+                    .sort((a, b) => {
+                        const aActive = isActive(a);
+                        const bActive = isActive(b);
+                        if (aActive === bActive) {
+                            return a.Name.localeCompare(b.Name);
+                        }
+                        return aActive ? -1 : 1;
+                    })
+                    .map((s) => {
+                        const active = isActive(s);
+                        return (
+                            <span
+                                key={s.Id}
+                                className={
+                                    active
+                                        ? "px-3 py-1 rounded-full text-sm bg-blue-600 text-white shadow-[0_0_12px_3px_rgba(37,99,235,0.75)] transition"
+                                        : "px-3 py-1 rounded-full text-sm bg-gray-600 text-gray-300 transition"
+                                }
+                            >
+                                {s.Name}
+                            </span>
+                        );
+                    })}
             </div>
 
             {/* Always show Ko-fi CTA */}

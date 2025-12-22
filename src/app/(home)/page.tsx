@@ -2,8 +2,10 @@
 import Link from "next/link";
 import { MessageCircle, Bird, Users, Heart, ShoppingBag } from "lucide-react";
 import SupportersPills from "./SupportersPills";
+import { ApiServer } from "@/app/lib/apiServer";
 
-export default function HomePage() {
+export default async function HomePage() {
+    const supporters = (await ApiServer.getSubscribers()) || [];
 
     return (
         <main className="relative px-6 py-20 flex items-center">
@@ -132,7 +134,7 @@ export default function HomePage() {
                         </Link>
                     </div>
                 </div>
-                <SupportersPills />
+                <SupportersPills supporters={supporters} />
 
             </div>
         </main>

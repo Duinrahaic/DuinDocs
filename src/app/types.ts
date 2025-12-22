@@ -44,7 +44,57 @@ export interface Project {
     }[];
 }
 
-export interface Subscriber  {
-    id: string;
-    name: string;
+export interface Subscriber {
+    Id: string;
+    Name: string;
+    Status: string;
+    StartedAt: string;
+    UpdatedAt: string;
+    EndsAt: string | null;
+}
+
+export interface Treadmill {
+    Id: string;
+    Make: string;
+    Model: string;
+    Driver: string;
+    Weight: {
+        maxUser: number;
+        unit: string;
+    } | null;
+    SpeedRange: {
+        min: number;
+        max: number;
+        unit: string;
+    } | null;
+    Source: {
+        name: string;
+        url: string;
+    };
+    Features: {
+        bluetooth: boolean;
+        ftms: boolean;
+        speed_read: boolean;
+        speed_control: boolean;
+        incline_read: boolean;
+        incline_control: boolean;
+        distance: boolean;
+        steps: boolean;
+        cadence: boolean;
+        calories: boolean;
+        heart_rate: boolean;
+        remote_start: boolean;
+    };
+    Applications: {
+        fitosc: {
+            supported: boolean;
+            notes: string[];
+        };
+        vrti: {
+            supported: boolean;
+            notes: string[];
+        };
+    };
+    SharedNotes: string[];
+    UpdatedAt: string;
 }
