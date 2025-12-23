@@ -1,4 +1,4 @@
-import { Subscriber, Treadmill } from "@/app/types";
+import { Subscriber } from "@/app/types";
 
 const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "https://api.duinrahaic.app";
 
@@ -42,15 +42,6 @@ export const ApiServer = {
             count: number;
             filters: { status: string | null; limit: number | null; offset: number | null };
         }>("/subscribers");
-        return response?.data || null;
-    },
-
-    async getTreadmills() {
-        const response = await apiFetch<{
-            success: boolean;
-            data: Treadmill[];
-            count: number;
-        }>("/treadmills.mdx");
         return response?.data || null;
     },
 };

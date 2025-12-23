@@ -1,4 +1,4 @@
-import { Subscriber, Treadmill } from "@/app/types";
+import { Subscriber } from "@/app/types";
 
 const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "https://api.duinrahaic.app";
 
@@ -9,9 +9,13 @@ interface CacheEntry<T> {
 
 const cache = new Map<string, CacheEntry<any>>();
 
+type ApiFetchOptions = Omit<RequestInit, 'cache'> & {
+    cache?: { ttl?: number }
+};
+
 async function apiFetch<T>(
     path: string,
-    options?: RequestInit & { cache?: { ttl?: number } }
+    options?: ApiFetchOptions
 ): Promise<T | null> {
     const cacheKey = `${path}`;
     const cacheTTL = options?.cache?.ttl;
@@ -77,17 +81,6 @@ export const Api = {
             count: number;
             filters: { status: string | null; limit: number | null; offset: number | null };
         }>("/subscribers");
-        return response?.data || null;
-    },
-
-    async getTreadmills() {
-        const response = await apiFetch<{
-            success: boolean;
-            data: Treadmill[];
-            count: number;
-        }>("/treadmills.mdx", {
-            cache: { ttl: 10 * 60 * 1000 }, // Cache for 10 minutes
-        });
         return response?.data || null;
     },
 };
