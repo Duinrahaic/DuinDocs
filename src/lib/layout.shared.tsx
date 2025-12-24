@@ -3,6 +3,7 @@ import { BookOpen, Users, HeartHandshake, Code } from "lucide-react";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import { NavbarMenu, NavbarMenuTrigger, NavbarMenuContent, NavbarMenuLink } from 'fumadocs-ui/layouts/home/navbar';
 import Image from "next/image";
+import { communities } from './communities-data';
 
 /**
  * Shared layout configurations
@@ -69,6 +70,36 @@ export function baseOptions(): BaseLayoutProps {
                   </div>
                 </div>
               </NavbarMenuLink>
+            </NavbarMenuContent>
+          </NavbarMenu>
+        ),
+      },
+      {
+        type: 'custom',
+        on: 'nav',
+        children: (
+          <NavbarMenu>
+            <NavbarMenuTrigger>
+              <Users className="w-4 h-4 mr-2" />
+              Communities
+            </NavbarMenuTrigger>
+            <NavbarMenuContent>
+              {communities.map((community) => (
+                <NavbarMenuLink key={community.id} href={community.href}>
+                  <div className="flex items-center gap-2">
+                      <Image
+                          src={community.image}
+                          alt={community.name}
+                          width={36}
+                          height={36}
+                      />
+                      <div>
+                          <div className="font-semibold">{community.name}</div>
+                          <div className="text-xs text-muted-foreground">{community.description}</div>
+                      </div>
+                  </div>
+                </NavbarMenuLink>
+              ))}
             </NavbarMenuContent>
           </NavbarMenu>
         ),
