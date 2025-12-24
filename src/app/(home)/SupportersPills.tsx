@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { Subscriber } from "@/app/types";
+import { HandHeart } from "lucide-react";
 
 type SupportersPillsProps = {
     supporters: Subscriber[];
@@ -16,8 +17,9 @@ export default function SupportersPills({ supporters }: SupportersPillsProps) {
     };
 
     return (
-        <div className="mt-12 md:col-span-2">
-            <h2 className="text-sm uppercase tracking-wide text-gray-400 mb-3">
+        <div className="w-full">
+            <h2 className="text-sm uppercase tracking-wide text-gray-400 mb-3 flex items-center gap-2">
+                <HandHeart className="w-4 h-4" />
                 Supporters
             </h2>
 
@@ -60,7 +62,7 @@ export default function SupportersPills({ supporters }: SupportersPillsProps) {
                         src="/brands/ko-fi-icon.png"
                         alt="Ko-fi"
                     />
-                    <span className="text-white font-medium">Support on Ko-fi</span>
+                    <span className="text-white font-medium">Support Me On Ko-fi</span>
                 </Link>
             </div>
         </div>
