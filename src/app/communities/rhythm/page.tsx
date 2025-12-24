@@ -1,15 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
+import CommunityPageWrapper from "../communityPageWrapper";
 
 export default function RhythmPage() {
   return (
-    <main className="container max-w-4xl mx-auto px-6 py-20">
-      <div className="mb-8">
-        <Link href="/communities" className="text-sm text-muted-foreground hover:text-foreground mb-4 inline-block">
-          ← Back to Communities
-        </Link>
-      </div>
-
+    <CommunityPageWrapper>
       <div className="flex flex-col md:flex-row gap-8 mb-12">
         <div className="flex-shrink-0">
           <Image
@@ -43,6 +37,6 @@ export default function RhythmPage() {
           <li>Creative collaboration</li>
         </ul>
       </div>
-    </main>
+    </CommunityPageWrapper>
   );
 }

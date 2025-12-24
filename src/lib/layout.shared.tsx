@@ -4,6 +4,7 @@ import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import { NavbarMenu, NavbarMenuTrigger, NavbarMenuContent, NavbarMenuLink } from 'fumadocs-ui/layouts/home/navbar';
 import Image from "next/image";
 import { communities } from './communities-data';
+import { getProjectsByRole } from './projects-data';
 
 /**
  * Shared layout configurations
@@ -13,6 +14,8 @@ import { communities } from './communities-data';
  * Docs Layout: app/docs/layout.tsx
  */
 export function baseOptions(): BaseLayoutProps {
+  const projectsByRole = getProjectsByRole();
+
   return {
     nav: {
       title: (
@@ -34,6 +37,109 @@ export function baseOptions(): BaseLayoutProps {
     links: [
       {
         type: 'custom',
+        on: 'menu',
+        children: (
+          <div className="py-2">
+            <div className="px-2 py-1.5 text-sm font-semibold text-muted-foreground flex items-center gap-2">
+              <Code className="w-4 h-4" />
+              Projects
+            </div>
+            <div className="space-y-2 mt-2">
+              {projectsByRole.developer.map((project) => (
+                <a
+                  key={project.id}
+                  href={project.href}
+                  className="block p-3 mx-2 rounded-lg border hover:bg-muted transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      width={36}
+                      height={36}
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm pb-1">{project.name}</div>
+                      <div className="text-xs text-muted-foreground">{project.description}</div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ),
+      },
+      {
+        type: 'custom',
+        on: 'menu',
+        children: (
+          <div className="py-2">
+            <div className="px-2 py-1.5 text-sm font-semibold text-muted-foreground flex items-center gap-2">
+              <HeartHandshake className="w-4 h-4" />
+              Contributions
+            </div>
+            <div className="space-y-2 mt-2">
+              {projectsByRole.contributor.map((project) => (
+                <a
+                  key={project.id}
+                  href={project.href}
+                  className="block p-3 mx-2 rounded-lg border hover:bg-muted transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      width={36}
+                      height={36}
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm pb-1">{project.name}</div>
+                      <div className="text-xs text-muted-foreground">{project.description}</div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ),
+      },
+      {
+        type: 'custom',
+        on: 'menu',
+        children: (
+          <div className="py-2">
+            <div className="px-2 py-1.5 text-sm font-semibold text-muted-foreground flex items-center gap-2">
+              <Users className="w-4 h-4" />
+              Communities
+            </div>
+            <div className="space-y-2 mt-2">
+              {communities.map((community) => (
+                <a
+                  key={community.id}
+                  href={community.href}
+                  className="block p-3 mx-2 rounded-lg border hover:bg-muted transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={community.image}
+                      alt={community.name}
+                      width={36}
+                      height={36}
+                      className="rounded"
+                    />
+                    <div>
+                      <div className="font-semibold text-sm">{community.name}</div>
+                      <div className="text-xs text-muted-foreground">{community.description}</div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ),
+      },
+      {
+        type: 'custom',
         on: 'nav',
         children: (
           <NavbarMenu>
@@ -42,34 +148,52 @@ export function baseOptions(): BaseLayoutProps {
               Projects
             </NavbarMenuTrigger>
             <NavbarMenuContent>
-              <NavbarMenuLink href="/dollymanager">
-                <div className="flex items-center gap-2">
+              {projectsByRole.developer.map((project) => (
+                <NavbarMenuLink key={project.id} href={project.href}>
+                  <div className="flex items-center gap-2">
                     <Image
-                        src="/docs/dollymanager/DollyManagerLogo.png"
-                        alt="DollyManager"
-                        width={36}
-                        height={36}
+                      src={project.image}
+                      alt={project.name}
+                      width={36}
+                      height={36}
                     />
-                    <div>
-                        <div className="font-semibold">DollyManager</div>
-                        <div className="text-xs text-muted-foreground">VRChat Dolly Management Tool</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold pb-1">{project.name}</div>
+                      <div className="text-xs text-muted-foreground">{project.description}</div>
                     </div>
-                </div>
-              </NavbarMenuLink>
-              <NavbarMenuLink href="/fitosc">
-                <div className="flex items-center gap-2">
-                    <Image
-                        src="/docs/fitosc/FitOSCLogo.png"
-                        alt="FitOSC"
-                        width={36}
-                        height={36}
-                    />
-                    <div>
-                    <div className="font-semibold">FitOSC</div>
-                    <div className="text-xs text-muted-foreground">Connect your treadmill to VRChat</div>
                   </div>
-                </div>
-              </NavbarMenuLink>
+                </NavbarMenuLink>
+              ))}
+            </NavbarMenuContent>
+          </NavbarMenu>
+        ),
+      },
+      {
+        type: 'custom',
+        on: 'nav',
+        children: (
+          <NavbarMenu>
+            <NavbarMenuTrigger>
+              <HeartHandshake className="w-4 h-4 mr-2" />
+              Contributions
+            </NavbarMenuTrigger>
+            <NavbarMenuContent>
+              {projectsByRole.contributor.map((project) => (
+                <NavbarMenuLink key={project.id} href={project.href}>
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      width={36}
+                      height={36}
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold pb-1">{project.name}</div>
+                      <div className="text-xs text-muted-foreground">{project.description}</div>
+                    </div>
+                  </div>
+                </NavbarMenuLink>
+              ))}
             </NavbarMenuContent>
           </NavbarMenu>
         ),
