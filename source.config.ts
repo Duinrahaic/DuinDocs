@@ -8,16 +8,6 @@ import { z } from 'zod';
 
 // You can customise Zod schemas for frontmatter and `meta.json` here
 // see https://fumadocs.dev/docs/mdx/collections#define-docs
-export const docs = defineDocs({
-  dir: 'content/docs',
-  docs: {
-    schema: frontmatterSchema,
-  },
-  meta: {
-    schema: metaSchema,
-  },
-});
-
 export const dollymanager = defineDocs({
   dir: 'content/dollymanager',
   docs: {
@@ -27,7 +17,18 @@ export const dollymanager = defineDocs({
     }),
   },
   meta: {
-    schema: metaSchema,
+    schema: metaSchema.extend({
+      pages: z.array(
+        z.union([
+          z.string(),
+          z.object({
+            title: z.string(),
+            pages: z.array(z.string()),
+          }),
+          z.literal('---'),
+        ])
+      ).optional(),
+    }),
   },
 });
 

@@ -2,8 +2,10 @@
   "title": "FitOSC",
   "pages": [
     "index",
-    "installation",
-    "usage",
+    "general-usage",
+    "hardware",
+    "community",
+    "patch-notes",
     "contact-support"
   ],
   "root": true

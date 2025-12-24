@@ -15,9 +15,9 @@ export default function Layout({ children }: { children: ReactNode }) {
                     <div className="flex justify-center items-center gap-2 px-4 pt-3">
                         <Image
                             src="/docs/fitosc/FitOSCLogo.png"
-                            alt="fitosc"
-                            width={40}
-                            height={40}
+                            alt="FitOSC"
+                            width={36}
+                            height={36}
                         />
                         <span className="font-semibold text-xl">FitOSC</span>
                     </div>

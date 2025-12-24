@@ -1,11 +1,10 @@
-import { source, dollySource, fitoscSource } from '@/lib/source';
+import { dollySource, fitoscSource } from '@/lib/source';
 import { createFromSource } from 'fumadocs-core/search/server';
 
 // Create a wrapper that combines all sources
 const combinedSource = {
-  ...source,
+  ...dollySource,
   getPages: () => [
-    ...source.getPages(),
     ...dollySource.getPages(),
     ...fitoscSource.getPages()
   ],

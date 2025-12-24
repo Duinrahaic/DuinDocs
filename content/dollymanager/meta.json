@@ -2,10 +2,9 @@
   "title": "DollyManager",
   "pages": [
     "index",
-    "installation",
-    "interface",
-    "usage",
-    "osc",
+    "general-usage",
+    "community-submissions",
+    "patch-notes",
     "contact-support"
   ],
   "root": true
