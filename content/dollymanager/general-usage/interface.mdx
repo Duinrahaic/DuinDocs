@@ -1,10 +1,23 @@
 ﻿---
 title: Interface Overview
-description: Understanding the DollyMangager
+description: Understanding the DollyManager interface
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout'
+![](/docs/dollymanager/Screenshot_20251224_123146.png)
 
-<Callout type="warn">
-    This area is underconstruction
-</Callout>
+1. The list of dollies, you can click to select them.
+2. Reload the list of dollies.
+3. Filter through the names and tags in the dolly list.
+4. Load the selected dolly into VRChat. By default, dollies will load in `globally`. By enabling the `relative` positioning, you will load the dolly relative to your current location and direction.
+5. Plays the loaded dolly animation in VRChat, You can change the delay (in seconds) on the animation using the indicator to the right of the play button.
+6. The OSC connection status. Red indicates `disconnected` while green indicated the app is `connected` via OSC. This app uses OSC Query to connect to VRChat and other applications. Clicking this button resets the OSC interface.
+7. Open the settings menu.
+
+![](/docs/dollymanager/Screenshot_20251224_123146-1.png)
+
+8. Use the `Preview` tab to view the paths of the selected dolly.
+9. Use the `Tags` tab to edit tags associated with each dolly.
+10. These indicate the number of paths and tags.
+11. These link the path index to the color displayed in the preview.
+12. Edit the name and export the selected dolly.
+13. Delete the selected dolly.
