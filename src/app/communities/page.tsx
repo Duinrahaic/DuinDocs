@@ -1,8 +1,27 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { communities } from "@/lib/communities-data";
+import { Search } from "lucide-react";
+import { useState, useMemo } from "react";
 
 export default function CommunitiesPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredCommunities = useMemo(() => {
+    if (!searchQuery) return communities;
+
+    const query = searchQuery.toLowerCase();
+    return communities.filter(
+      (community) =>
+        community.name.toLowerCase().includes(query) ||
+        community.description.toLowerCase().includes(query) ||
+        community.id.toLowerCase().includes(query) ||
+        community.vrchatGroupCode?.toLowerCase().includes(query)
+    );
+  }, [searchQuery]);
+
   return (
     <main className="container max-w-6xl mx-auto px-6 py-20">
       <div className="mb-12">
@@ -12,8 +31,21 @@ export default function CommunitiesPage() {
         </p>
       </div>
 
+      <div className="mb-8">
+        <div className="relative max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search communities..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {communities.map((community) => (
+        {filteredCommunities.map((community) => (
           <Link
             key={community.id}
             href={community.href}
@@ -37,6 +69,12 @@ export default function CommunitiesPage() {
           </Link>
         ))}
       </div>
+
+      {filteredCommunities.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground">No communities found matching "{searchQuery}"</p>
+        </div>
+      )}
     </main>
   );
 }

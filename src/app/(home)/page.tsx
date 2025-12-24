@@ -116,7 +116,7 @@ export default async function HomePage() {
                         <Heart className="w-4 h-4" />
                         Support
                     </h2>
-                    <div className="flex flex-wrap gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md">
                         <Link
                             href="https://duinrahaic.booth.pm/"
                             target="_blank"

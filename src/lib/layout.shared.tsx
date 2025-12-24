@@ -59,7 +59,7 @@ export function baseOptions(): BaseLayoutProps {
                       height={36}
                     />
                     <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-sm pb-1">{project.name}</div>
+                      <div className="font-semibold text-sm">{project.name}</div>
                       <div className="text-xs text-muted-foreground">{project.description}</div>
                     </div>
                   </div>
@@ -93,7 +93,7 @@ export function baseOptions(): BaseLayoutProps {
                       height={36}
                     />
                     <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-sm pb-1">{project.name}</div>
+                      <div className="font-semibold text-sm">{project.name}</div>
                       <div className="text-xs text-muted-foreground">{project.description}</div>
                     </div>
                   </div>
@@ -125,9 +125,8 @@ export function baseOptions(): BaseLayoutProps {
                       alt={community.name}
                       width={36}
                       height={36}
-                      className="rounded"
                     />
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <div className="font-semibold text-sm">{community.name}</div>
                       <div className="text-xs text-muted-foreground">{community.description}</div>
                     </div>
@@ -158,7 +157,7 @@ export function baseOptions(): BaseLayoutProps {
                       height={36}
                     />
                     <div className="flex-1 min-w-0">
-                      <div className="font-semibold pb-1">{project.name}</div>
+                      <div className="font-semibold">{project.name}</div>
                       <div className="text-xs text-muted-foreground">{project.description}</div>
                     </div>
                   </div>
@@ -188,7 +187,7 @@ export function baseOptions(): BaseLayoutProps {
                       height={36}
                     />
                     <div className="flex-1 min-w-0">
-                      <div className="font-semibold pb-1">{project.name}</div>
+                      <div className="font-semibold">{project.name}</div>
                       <div className="text-xs text-muted-foreground">{project.description}</div>
                     </div>
                   </div>
@@ -211,16 +210,16 @@ export function baseOptions(): BaseLayoutProps {
               {communities.map((community) => (
                 <NavbarMenuLink key={community.id} href={community.href}>
                   <div className="flex items-center gap-2">
-                      <Image
-                          src={community.image}
-                          alt={community.name}
-                          width={36}
-                          height={36}
-                      />
-                      <div>
-                          <div className="font-semibold">{community.name}</div>
-                          <div className="text-xs text-muted-foreground">{community.description}</div>
-                      </div>
+                    <Image
+                      src={community.image}
+                      alt={community.name}
+                      width={36}
+                      height={36}
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold">{community.name}</div>
+                      <div className="text-xs text-muted-foreground">{community.description}</div>
+                    </div>
                   </div>
                 </NavbarMenuLink>
               ))}
