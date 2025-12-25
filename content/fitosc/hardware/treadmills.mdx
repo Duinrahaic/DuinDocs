@@ -3,6 +3,8 @@ title: Treadmills
 description: Compatible treadmill models and setup information
 ---
 
+import { TreadmillTable } from '@/components/TreadmillTable';
+
 <div className="bg-yellow-900/20 border border-yellow-600/50 rounded-lg p-4 mb-6">
   <div className="flex items-center gap-2">
     <span className="text-2xl">🚧</span>
@@ -13,3 +15,22 @@ description: Compatible treadmill models and setup information
   </div>
 </div>
 
+This is a community-maintained list of known compatible treadmills with FitOSC. While not exhaustive, this list provides detailed information about what each treadmill can do based on community research and testing. Good indicators of compatibility include the vendor apps the treadmill supports, as well as certain treadmill series from established vendors. Use the filters below to find treadmills that match your specific needs. For questions or contirbutions refer to the discord.
+
+## Good Indicators To Watch For
+
+Treadmills that communicate over BLE often have the below icons. This is a good indicator that there is a high chance of compatability:
+
+<div className="flex flex-row gap-4">
+  <img src="/docs/fitosc/treadmill/Kinomap_Icon.jpg" alt="Kinomap" className="h-16 w-auto rounded-lg" />
+  <img src="/docs/fitosc/treadmill/URevo_Icon.jpg" alt="URevo" className="h-16 w-auto rounded-lg" />
+  <img src="/docs/fitosc/treadmill/Zwift_Icon.png" alt="Zwift" className="h-16 w-auto rounded-lg" />
+</div>
+
+## Documented Treadmills
+These are the list of treadmills that have been compiled from our community with features. This is maintained and updated [here](https://github.com/Duinrahaic/treadmill-compatibility).
+<TreadmillTable />
+
+## Useful Links
+Below are useful links that have been tremendous help for treadmill selection.
+- [Kinomap Compatibility List](https://www.kinomap.com/compatibility)
